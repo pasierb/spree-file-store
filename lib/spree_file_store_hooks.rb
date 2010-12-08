@@ -1,4 +1,4 @@
-class FileStoreHooks < Spree::ThemeSupport::HookListener
+class SpreeFileStoreHooks < Spree::ThemeSupport::HookListener
   insert_after :admin_tabs do
     %(<%= tab(:uploaded_files) %>)
   end

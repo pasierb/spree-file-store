@@ -1,3 +1,9 @@
-map.namespace :admin do |admin|
-  admin.resources :uploaded_files, :only => [:index, :new, :create, :destroy], :member => { :download => :get }
+Rails.application.routes.draw do
+
+  namespace :admin do
+    resources :uploaded_files do
+      get 'download', :on => :member
+    end
+  end
+
 end

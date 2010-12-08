@@ -1,0 +1,58 @@
+<div class='toolbar'>
+  <ul class='actions'>
+    <li>
+      <p><%= button_link_to t('upload_a_new_file'), new_admin_uploaded_file_path, :icon => 'add' %></p>
+    </li>
+  </ul>
+  <br class='clear' />
+</div>
+
+<h1><%= t('listing_uploaded_files') %></h1>
+
+<table class="index">
+  <thead>
+    <tr>
+      <th><%= order @search, :by => :asset_file_name, :as => t("filename") %></th>
+      <th><%= t('image') %></th>
+      <th><%= t('uploaded_by') %></th>
+      <th><%= order @search, :by => :created_at, :as => t('date_uploaded') %></th>
+      <th><%= t('uploaded_file_actions') %></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @uploaded_files.each do |uploaded_file| %>
+    <tr id="uploaded_file_<%= uploaded_file.id %>">
+      <td><%= uploaded_file.asset_file_name %></td>
+      <td>
+        <%= link_to(image_tag(uploaded_file.asset.url(:thumb)), uploaded_file.asset.url(:original)) %>
+      </td>
+      <td><%= uploaded_file.user.email %></td>
+      <td><%= uploaded_file.created_at.to_s(:mdy) %></td>
+      <td>
+        <%= link_to('Download', download_admin_uploaded_file_path(uploaded_file)) %> |
+        <%= link_to_delete uploaded_file %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+  <tfoot></tfoot>
+</table>
+    
+<%= will_paginate(:previous_label => "&#171; #{t('previous')}", :next_label => "#{t('next')} &#187;") %>
+
+
+
+<% content_for :sidebar do %>
+  <div class="box">
+    <h3><%= t(:search) %></h3>
+    <%= form_for @search do |f| %>
+      <%- locals = {:f => f} %>
+      <p>
+        <%= t("filename") %><br />
+        <%= f.text_field :asset_file_name_contains, :size=>18 %>
+      </p>
+      <p><%= button t("search") %></p>
+    <% end %>
+  </div>
+<% end %>
+
