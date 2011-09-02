@@ -21,9 +21,8 @@ class Admin::UploadedFilesController < Admin::BaseController
 
   private 
   def collection 
-    @search = UploadedFile.searchlogic(params[:search])
-    @search.order ||= "ascend_by_asset_file_name"
-    @collection = @uploaded_files = @search.do_search.paginate(:per_page => Spree::Config[:admin_products_per_page], :page => params[:page])
+    @search = UploadedFile.search(params[:search])
+    @collection = @uploaded_files = @search.paginate(:per_page => Spree::Config[:admin_products_per_page], :page => params[:page])
   end
 
   def attach_user

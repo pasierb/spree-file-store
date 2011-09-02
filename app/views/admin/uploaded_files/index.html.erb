@@ -12,10 +12,10 @@
 <table class="index">
   <thead>
     <tr>
-      <th><%= order @search, :by => :asset_file_name, :as => t("filename") %></th>
+      <th><%= sort_link @search, :asset_file_name, t("filename"), :default_order => :desc %></th>
       <th><%= t('image') %></th>
       <th><%= t('uploaded_by') %></th>
-      <th><%= order @search, :by => :created_at, :as => t('date_uploaded') %></th>
+      <th><%= sort_link @search, :created_at, t('date_uploaded'), :default_order => :desc %></th>
       <th><%= t('uploaded_file_actions') %></th>
     </tr>
   </thead>
@@ -45,7 +45,7 @@
 <% content_for :sidebar do %>
   <div class="box">
     <h3><%= t(:search) %></h3>
-    <%= form_for @search do |f| %>
+    <%= form_for [:admin, @search] do |f| %>
       <%- locals = {:f => f} %>
       <p>
         <%= t("filename") %><br />
