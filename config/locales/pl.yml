@@ -1,0 +1,12 @@
+---
+pl:
+  file_store: Pliki
+  upload_a_new_file: Prześlij nowy plik
+  listing_uploaded_files: Przesłane pliki
+  filename: Nazwa pliku
+  url: URL
+  uploaded_by: Utworzono przez
+  date_uploaded: Data przesłania
+  upload_file: Przeslij plik
+  uploaded_file_actions: Operacje
+  uploaded_files: Przesłane Pliki
